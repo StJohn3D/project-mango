@@ -44,10 +44,21 @@
 
 <body>
     <div class="app">
-        <h1>Need Terp</h1>
-        <div id="deviceready" class="blink">
-            <p class="event listening">Connecting to Device</p>
-            <p class="event received">Device is Ready</p>
+        <h1>I Need an Interpreter</h1>
+        <div id="deviceready">
+            <p class="event listening">Loading</p>
+            <form class="event received" action="Javascript:handleSubmit()">
+                <div class="formRow">My Information</div>
+                <div class="formRow">Username <input type="text" name="username"/></div>
+                <div class="formRow">Phone <input type="text" name="phone"/></div>
+                <div class="formRow">Email <input type="text" name="email"/></div>
+                <div class="formRow">My Appointment</div>
+                <div class="formRow">Date <input type="text" name="date"/></div>
+                <div class="formRow">Time <input type="text" name="time"/></div>
+                <div class="formRow">Location <input type="text" name="location"/></div>
+                <div class="formRow">Detail <input type="text" name="detail"/></div>
+                <div class="formRow"><input type="submit" value="Submit"/></div>
+            </form>
         </div>
     </div>
     <script type="text/javascript" src="cordova.js"></script>
