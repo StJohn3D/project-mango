@@ -48,6 +48,41 @@ var app = {
     }
 };
 
+var $ = function(id) {
+    return document.getElementById(id).value;
+}
+
+function htmlEntities(str) {
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/ /g, '%20')
+        .replace(/!n/g, '%0A');
+}
+
+var getBody = function() {
+    var body = [
+        'User Info!n',
+        'Username: ', $('username'),
+        '!n',
+        'Phone   : ', $('phone'),
+        '!n',
+        'Email   : ', $('email'),
+        '!n!n',
+        'Appointment Info!n',
+        'Date    : ', $('date'),
+        '!n',
+        'Time    : ', $('time'),
+        '!n',
+        'Location: ', $('location'),
+        '!n',
+        'Detail  : ', $('detail')
+    ]
+    return htmlEntities(body.join(''))
+}
+
 var handleSubmit = function() {
-    alert('submitted')
+    window.open('mailto:info@angelvri.com?subject=I%20Need%20An%20Interpreter&body=' + getBody());
 }
