@@ -34,6 +34,11 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        cordova.plugins.email.isAvailable(
+          function (isAvailable) {
+              if(!isAvailable) alert('Service is not available');
+          }
+        );
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -84,5 +89,12 @@ var getBody = function() {
 }
 
 var handleSubmit = function() {
-    window.open('mailto:info@angelvri.com?subject=I%20Need%20An%20Interpreter&body=' + getBody());
+    // window.open('mailto:info@angelvri.com?subject=I%20Need%20An%20Interpreter&body=' + getBody());
+    cordova.plugins.email.open({
+        to:      'max@mustermann.de',
+        cc:      'erika@mustermann.de',
+        bcc:     ['john@doe.com', 'jane@doe.com'],
+        subject: 'Greetings',
+        body:    'How are you? Nice greetings from Leipzig'
+    });
 }
