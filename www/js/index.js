@@ -91,10 +91,10 @@ var getBody = function() {
 var handleSubmit = function() {
     // window.open('mailto:info@angelvri.com?subject=I%20Need%20An%20Interpreter&body=' + getBody());
     cordova.plugins.email.open({
-        to:      'max@mustermann.de',
-        cc:      'erika@mustermann.de',
-        bcc:     ['john@doe.com', 'jane@doe.com'],
-        subject: 'Greetings',
-        body:    'How are you? Nice greetings from Leipzig'
+        to:      'info@angelvri.com',
+        // cc:      'erika@mustermann.de',
+        // bcc:     ['john@doe.com', 'jane@doe.com'],
+        subject: 'I%20Need%20An%20Interpreter',
+        body:    getBody()
     });
 }
