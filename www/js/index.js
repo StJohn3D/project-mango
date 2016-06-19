@@ -89,19 +89,20 @@ var getHtmlEncodedBody = function() {
 }
 var getHtmlBody = function() {
     var body = [
-      '<!DOCTYPE html>',
-      '<html>',
-      '<head>',
-      '  <meta charset="utf-8">',
-      '  <meta name="viewport" content="width=device-width">',
-      '  <title>I Need an Interpreter</title>',
-      '</head>',
-      '<body style="background-color:#cccccc;">',
-      '  <h1>I Need an Interpreter</h1>',
-      '<hr/>',
-      '<b>User Info: </b>Some Name',
-      '</body>',
-      '</html>'
+        '<h2>User Info</h2>',
+        '<b>Username: </b>', $('username'),
+        '<br>',
+        '<b>Phone: </b>', $('phone'),
+        '<br>',
+        '<b>Email: </b>', $('email'),
+        '<h1>Appointment Info</h1>',
+        '<b>Date: </b>', $('date'),
+        '<br>',
+        '<b>Time: </b>', $('time'),
+        '<br>',
+        '<b>Location: </b>', $('location'),
+        '<br>',
+        '<b>Detail: </b>', $('detail')
     ]
     return body.join('')
 }
