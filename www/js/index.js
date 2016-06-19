@@ -67,7 +67,7 @@ function htmlEntities(str) {
         .replace(/!n/g, '%0A');
 }
 
-var getBody = function() {
+var getHtmlEncodedBody = function() {
     var body = [
         'User Info!n',
         'Username: ', $('username'),
@@ -87,6 +87,24 @@ var getBody = function() {
     ]
     return htmlEntities(body.join(''))
 }
+var getHtmlBody = function() {
+    var body = [
+      '<!DOCTYPE html>',
+      '<html>',
+      '<head>',
+      '  <meta charset="utf-8">',
+      '  <meta name="viewport" content="width=device-width">',
+      '  <title>I Need an Interpreter</title>',
+      '</head>',
+      '<body style="background-color:#cccccc;">',
+      '  <h1>I Need an Interpreter</h1>',
+      '<hr/>',
+      '<b>User Info: </b>Some Name',
+      '</body>',
+      '</html>'
+    ]
+    return body.join('')
+}
 
 var handleSubmit = function() {
     // window.open('mailto:info@angelvri.com?subject=I%20Need%20An%20Interpreter&body=' + getBody());
@@ -94,7 +112,8 @@ var handleSubmit = function() {
         to:      'info@angelvri.com',
         // cc:      'erika@mustermann.de',
         // bcc:     ['john@doe.com', 'jane@doe.com'],
-        subject: 'I%20Need%20An%20Interpreter',
-        body:    getBody()
+        subject: 'I Need An Interpreter',
+        isHtml:  true
+        body: getHtmlBody()
     });
 }
