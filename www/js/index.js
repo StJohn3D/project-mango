@@ -113,7 +113,7 @@ var handleSubmit = function() {
         // cc:      'erika@mustermann.de',
         // bcc:     ['john@doe.com', 'jane@doe.com'],
         subject: 'I Need An Interpreter',
-        isHtml:  true
+        isHtml:  true,
         body: getHtmlBody()
     });
 }
