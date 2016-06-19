@@ -106,15 +106,36 @@ var getHtmlBody = function() {
     ]
     return body.join('')
 }
+var getPlainText = function() {
+    var body = [
+        'User Info/n',
+        'Username: ', $('username'),
+        '/n',
+        'Phone   : ', $('phone'),
+        '/n',
+        'Email   : ', $('email'),
+        '/n/n',
+        'Appointment Info/n',
+        'Date    : ', $('date'),
+        '/n',
+        'Time    : ', $('time'),
+        '/n',
+        'Location: ', $('location'),
+        '/n',
+        'Detail  : ', $('detail')
+    ]
+    return body.join('')
+}
 
 var handleSubmit = function() {
     // window.open('mailto:info@angelvri.com?subject=I%20Need%20An%20Interpreter&body=' + getBody());
+    var usePlainText = $('plainText')
     cordova.plugins.email.open({
         to:      'info@angelvri.com',
         // cc:      'erika@mustermann.de',
         // bcc:     ['john@doe.com', 'jane@doe.com'],
         subject: 'I Need An Interpreter',
-        isHtml:  true,
-        body: getHtmlBody()
+        isHtml: usePlainText,
+        body: usePlainText ? getPlainText() : getHtmlBody()
     });
 }

@@ -124,6 +124,7 @@ h1 {
 
 .formCell {
     display: table-cell;
+    padding: 1em;
 }
 
 .formCell.left {
@@ -133,6 +134,14 @@ h1 {
 
 .formCell.right {
     text-align: left;
+}
+
+.formCell.right > input {
+    width: 65%;
+}
+.formCell.right > textarea {
+    width: 65%;
+    height: 100%;
 }
 
 .formRow {
