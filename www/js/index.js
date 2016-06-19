@@ -54,7 +54,8 @@ var app = {
 };
 
 var $ = function(id) {
-    return document.getElementById(id).value;
+    var element = document.getElementById(id)
+    return element.value === 'getChecked' ? element.checked : element.value;
 }
 
 function htmlEntities(str) {
