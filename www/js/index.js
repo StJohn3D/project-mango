@@ -137,6 +137,6 @@ var handleSubmit = function() {
         // bcc:     ['john@doe.com', 'jane@doe.com'],
         subject: 'I Need An Interpreter',
         isHtml: usePlainText,
-        body: usePlainText ? getPlainText() : getHtmlBody()
+        body: usePlainText ? getHtmlEncodedBody() : getHtmlBody()
     });
 }
