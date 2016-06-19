@@ -110,14 +110,16 @@ var getHtmlBody = function() {
 var getPlainText = function() {
     var lf = String.fromCharCode(10)
     var body = [
-        'User Info/n',
+        ' - User Info - ',
+        lf,
         'Username: ', $('username'),
         lf,
         'Phone   : ', $('phone'),
         lf,
         'Email   : ', $('email'),
         lf + lf,
-        'Appointment Info/n',
+        ' - Appointment Info - ',
+        lf,
         'Date    : ', $('date'),
         lf,
         'Time    : ', $('time'),
