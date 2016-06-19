@@ -108,21 +108,22 @@ var getHtmlBody = function() {
     return body.join('')
 }
 var getPlainText = function() {
+    var lf = String.fromCharCode(10)
     var body = [
         'User Info/n',
         'Username: ', $('username'),
-        '/n',
+        lf,
         'Phone   : ', $('phone'),
-        '/n',
+        lf,
         'Email   : ', $('email'),
-        '/n/n',
+        lf + lf,
         'Appointment Info/n',
         'Date    : ', $('date'),
-        '/n',
+        lf,
         'Time    : ', $('time'),
-        '/n',
+        lf,
         'Location: ', $('location'),
-        '/n',
+        lf,
         'Detail  : ', $('detail')
     ]
     return body.join('')
@@ -136,7 +137,7 @@ var handleSubmit = function() {
         // cc:      'erika@mustermann.de',
         // bcc:     ['john@doe.com', 'jane@doe.com'],
         subject: 'I Need An Interpreter',
-        isHtml: true,
-        body: usePlainText ? getHtmlEncodedBody() : getHtmlBody()
+        isHtml: !usePlainText,
+        body: usePlainText ? getPlainText() : getHtmlBody()
     });
 }
