@@ -133,13 +133,14 @@ var getPlainText = function() {
 
 var handleSubmit = function() {
     // window.open('mailto:info@angelvri.com?subject=I%20Need%20An%20Interpreter&body=' + getBody());
-    var usePlainText = $('plainText')
+    //var usePlainText = $('plainText')
     cordova.plugins.email.open({
         to:      'info@angelvri.com',
         // cc:      'erika@mustermann.de',
         // bcc:     ['john@doe.com', 'jane@doe.com'],
         subject: 'I Need An Interpreter',
-        isHtml: !usePlainText,
-        body: usePlainText ? getPlainText() : getHtmlBody()
+        //isHtml: !usePlainText,
+        //body: usePlainText ? getPlainText() : getHtmlBody()
+        body: getPlainText()
     });
 }
