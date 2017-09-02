@@ -34,11 +34,6 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        cordova.plugins.email.isAvailable(
-          function (isAvailable) {
-              if(!isAvailable) alert('Service is not available');
-          }
-        );
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -58,89 +53,22 @@ var $ = function(id) {
     return element.value === 'getChecked' ? element.checked : element.value;
 }
 
-function htmlEntities(str) {
-    return String(str)
-        .replace(/&/g, '&amp;')
-        .replace(/</g, '&lt;')
-        .replace(/>/g, '&gt;')
-        .replace(/"/g, '&quot;')
-        .replace(/ /g, '%20')
-        .replace(/!n/g, '%0A');
-}
-
-var getHtmlEncodedBody = function() {
-    var body = [
-        'User Info!n',
-        'Username: ', $('username'),
-        '!n',
-        'Phone   : ', $('phone'),
-        '!n',
-        'Email   : ', $('email'),
-        '!n!n',
-        'Appointment Info!n',
-        'Date    : ', $('date'),
-        '!n',
-        'Time    : ', $('time'),
-        '!n',
-        'Location: ', $('location'),
-        '!n',
-        'Detail  : ', $('detail')
-    ]
-    return htmlEntities(body.join(''))
-}
-var getHtmlBody = function() {
-    var body = [
-        '<h2>User Info</h2>',
-        '<b>Username: </b>', $('username'),
-        '<br>',
-        '<b>Phone: </b>', $('phone'),
-        '<br>',
-        '<b>Email: </b>', $('email'),
-        '<h1>Appointment Info</h1>',
-        '<b>Date: </b>', $('date'),
-        '<br>',
-        '<b>Time: </b>', $('time'),
-        '<br>',
-        '<b>Location: </b>', $('location'),
-        '<br>',
-        '<b>Detail: </b>', $('detail')
-    ]
-    return body.join('')
-}
-var getPlainText = function() {
-    var lf = String.fromCharCode(10)
+var getBody = function() {
     var body = [
         ' - User Info - ',
-        lf,
-        'Username: ', $('username'),
-        lf,
-        'Phone   : ', $('phone'),
-        lf,
-        'Email   : ', $('email'),
-        lf + lf,
+        'Username: ' + $('username'),
+        'Phone: ' + $('phone'),
+        'Email: ' + $('email'),
+        '',
         ' - Appointment Info - ',
-        lf,
-        'Date    : ', $('date'),
-        lf,
-        'Time    : ', $('time'),
-        lf,
-        'Location: ', $('location'),
-        lf,
-        'Detail  : ', $('detail')
+        'Date: ' + $('date'),
+        'Time: ' + $('time'),
+        'Location: ' + $('location'),
+        'Detail: ' + $('detail')
     ]
-    return body.join('')
+    return encodeURIComponent(body.join('\r\n'))
 }
 
 var handleSubmit = function() {
-    // window.open('mailto:info@angelvri.com?subject=I%20Need%20An%20Interpreter&body=' + getBody());
-    //var usePlainText = $('plainText')
-    cordova.plugins.email.open({
-        to:      'info@angelvri.com',
-        // cc:      'erika@mustermann.de',
-        // bcc:     ['john@doe.com', 'jane@doe.com'],
-        subject: 'I Need An Interpreter',
-        //isHtml: !usePlainText,
-        //body: usePlainText ? getPlainText() : getHtmlBody()
-        body: getPlainText()
-    });
+    window.open('mailto:info@angelvri.com?subject=I%20Need%20An%20Interpreter&body=' + getBody());
 }

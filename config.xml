@@ -21,7 +21,6 @@
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="permissions" value="none" />
-    <gap:plugin name="de.appplant.cordova.plugin.email-composer" />
     <icon src="icon.png" />
     <platform name="android">
         <icon density="ldpi" src="www/res/icon/android/icon-android-ldpi.png" />
