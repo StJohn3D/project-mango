@@ -56,7 +56,7 @@ var $ = function(id) {
 var getBody = function() {
     var body = [
         ' - User Info - ',
-        'Username: ' + $('username'),
+        'Name: ' + $('name'),
         'Phone: ' + $('phone'),
         'Email: ' + $('email'),
         '',
