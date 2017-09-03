@@ -33,7 +33,13 @@ var app = {
     // The scope of 'this' is the event. In order to call the 'receivedEvent'
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
+        // cordova.plugins.email is now available
         app.receivedEvent('deviceready');
+        cordova.plugins.email.isAvailable(
+          function (isAvailable) {
+            if(!isAvailable) alert('Service is not available');
+          }
+        );
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -53,22 +59,41 @@ var $ = function(id) {
     return element.value === 'getChecked' ? element.checked : element.value;
 }
 
-var getBody = function() {
-    var body = [
-        ' - User Info - ',
-        'Name: ' + $('name'),
-        'Phone: ' + $('phone'),
-        'Email: ' + $('email'),
-        '',
-        ' - Appointment Info - ',
-        'Date: ' + $('date'),
-        'Time: ' + $('time'),
-        'Location: ' + $('location'),
-        'Detail: ' + $('detail')
-    ]
-    return encodeURIComponent(body.join('\r\n'))
+var getPlainText = function() {
+  var lf = String.fromCharCode(10);
+  var body = [
+    ' - User Info - ',
+    lf,
+    'Name: ', $('name'),
+    lf,
+    'Phone   : ', $('phone'),
+    lf,
+    'Email   : ', $('email'),
+    lf + lf,
+    ' - Appointment Info - ',
+    lf,
+    'Date    : ', $('date'),
+    lf,
+    'Time    : ', $('time'),
+    lf,
+    'Location: ', $('location'),
+    lf,
+    'Detail  : ', $('detail')
+  ];
+  return body.join('')
 }
 
 var handleSubmit = function() {
-    window.open('mailto:info@angelvri.com?subject=I%20Need%20An%20Interpreter&body=' + getBody());
+    var callback = function() { return true; }
+    cordova.plugins.email.open({
+      to:      ['info@angelvri.com'],
+      cc:      [''],
+      bcc:     [''],
+      attachments: [], // file paths or base64 data streams
+      subject: 'I Need An Interpreter',
+      body: getPlainText(),
+      isHtml: false
+    }, callback);
+    //TODO use the callback arg to save the user's preferred email client if possible...
+    //TODO do more tests with sending HTML emails
 }
