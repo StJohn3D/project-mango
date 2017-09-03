@@ -84,7 +84,6 @@ var getPlainText = function() {
 }
 
 var handleSubmit = function() {
-    var callback = function() { return true; }
     cordova.plugins.email.open({
       to:      ['info@angelvri.com'],
       cc:      [''],
@@ -93,7 +92,7 @@ var handleSubmit = function() {
       subject: 'I Need An Interpreter',
       body: getPlainText(),
       isHtml: false
-    }, callback);
+    });
     //TODO use the callback arg to save the user's preferred email client if possible...
     //TODO do more tests with sending HTML emails
 }
