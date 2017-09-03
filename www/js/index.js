@@ -35,9 +35,11 @@ var app = {
     onDeviceReady: function() {
         // cordova.plugins.email is now available
         app.receivedEvent('deviceready');
+        cordova.plugins.email.hasPermission(function (granted) { alert('hasPermissions: ' + granted) });
         cordova.plugins.email.isAvailable(
           function (isAvailable) {
             if(!isAvailable) alert('Service is not available');
+            alert("Service IS available");
           }
         );
     },
